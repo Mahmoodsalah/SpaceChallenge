@@ -6,6 +6,8 @@ public class Main {
         System.out.println(new Random().nextDouble());
         System.out.println( Math.random());
         U1 u1= new U1();
+        U2 u2= new U2();
+
         System.out.println(u1.launch());
 
     }
