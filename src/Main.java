@@ -9,6 +9,8 @@ public class Main {
         U2 u2= new U2();
 
         System.out.println(u1.launch());
+        System.out.println(u2.launch());
+
 
     }
 }
