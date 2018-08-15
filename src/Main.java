@@ -3,22 +3,27 @@ import java.util.ArrayList;
 import java.util.Random;  //temp
 
 public class Main {
-    //to check bugs only will be moved to sperate main class
     public static void main(String args []) throws FileNotFoundException {
-        System.out.println(new Random().nextDouble());
-        System.out.println( Math.random());
-        U1 u1= new U1();
-        U2 u2= new U2();
-        Simulation simulation = new Simulation();
-        ArrayList<Item> all =new ArrayList<Item>();
-
-        all = simulation.loadItems("phase-1.txt");
-        System.out.println(all.get(10).weight);
+        Simulation S = new Simulation();
+        ArrayList<Item> phase1Items= S.loadItems("phase-1.txt");
+        ArrayList<Item> phase2Items= S.loadItems("phase-2.txt");
 
 
-        System.out.println(u1.launch());
-        System.out.println(u2.launch());
+        //Load U1rockets group
+        ArrayList<Rocket> U1list = S.loadU1(phase1Items);
+        U1list.addAll(S.loadU1(phase2Items));
+
+        //run simulation for U1 prototype
+        int totalu1 = S.runSimulation(U1list);
+        System.out.println("Total budget for mission through prototype U1 is: " + totalu1/1000000 + " Million $");
 
 
+        //Load U2rockets group
+        ArrayList<Rocket> U2list = S.loadU2(phase1Items);
+        U2list.addAll(S.loadU2(phase2Items));
+
+        //run simulation for U2 prototype
+        int totalu2 = S.runSimulation(U2list);
+        System.out.println("Total budget for mission through prototype U2 is: " + totalu2/1000000 + " Million $");
     }
 }

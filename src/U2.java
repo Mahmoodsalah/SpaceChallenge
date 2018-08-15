@@ -24,13 +24,13 @@ public class U2 extends Rocket{
 
     @Override
     public boolean launch(){
-        double randomNumber = new Random().nextDouble();
+        double randomNumber = Math.random() ;
         this.ClaunchExplosion = this.rateExplosion * ((double) currentCargoWeight / (double) cargoLimit);
         return randomNumber > this.ClaunchExplosion;
     };
     @Override
     public boolean land(){
-        double randomNumber = new Random().nextDouble();
+        double randomNumber = Math.random() ;
         this.ClandingCrash = this.rateCrash * ((double) currentCargoWeight / (double) cargoLimit);
         return randomNumber > this.ClandingCrash;
     }

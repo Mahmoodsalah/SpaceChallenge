@@ -5,9 +5,9 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Simulation {
-    public ArrayList<Item> allItems;  //new ArrayList<Item>();
-    public ArrayList<U1> U1fleet;  //new ArrayList<U1>();
-    public ArrayList<U2> U2fleet;  //new ArrayList<U2>();
+    //public ArrayList<Item> allItems;  //new ArrayList<Item>();
+    public ArrayList<Rocket> U1fleet;  //new ArrayList<U1>();
+    public ArrayList<Rocket> U2fleet;  //new ArrayList<U2>();
     public int i;
     public int j;
 
@@ -15,15 +15,16 @@ public class Simulation {
 
 
     public Simulation(){
-        allItems = new ArrayList<Item>();
-        U1fleet = new ArrayList<U1>();
-        U2fleet = new ArrayList<U2>();
-        i=0;
+        //allItems = new ArrayList<Item>();
+        U1fleet = new ArrayList<Rocket>();
+        U2fleet = new ArrayList<Rocket>();
+        i= 0;
         j=0;
 
     }
 
     public ArrayList<Item> loadItems(String filename) throws FileNotFoundException{
+        ArrayList<Item> allItems =  new ArrayList<Item>();
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
@@ -35,15 +36,20 @@ public class Simulation {
             item.weight = item.weight /1000;
             allItems.add(item);
         }
+        //System.out.println(allItems.size());
         return allItems;
     }
 
-    public ArrayList<U1> loadU1(ArrayList<Item> all){
-        while(i <=  all.size()-1){
+    public ArrayList<Rocket> loadU1(ArrayList<Item> all){
+        while (i < (all.size() - 1)){
             U1 u1= new U1();
             while(u1.canCarry(all.get(i))){
                 u1.carry(all.get(i));
                 i++;
+                if(i > (all.size()-1)){
+                    U1fleet.add(u1);
+                    return U1fleet;
+                }
             }
             U1fleet.add(u1);
         }
@@ -51,12 +57,16 @@ public class Simulation {
     }
 
 
-    public ArrayList<U2> loadU2(ArrayList<Item> all){
-        while(j <=  all.size()-1){
+    public ArrayList<Rocket> loadU2(ArrayList<Item> all){
+        while (j < (all.size() - 1)){
             U2 u2= new U2();
             while(u2.canCarry(all.get(j))){
                 u2.carry(all.get(j));
                 j++;
+                if(j > (all.size()-1)) {
+                    U2fleet.add(u2);
+                    return U2fleet;
+                }
             }
             U2fleet.add(u2);
         }
