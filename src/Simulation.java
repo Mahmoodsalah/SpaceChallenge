@@ -63,6 +63,20 @@ public class Simulation {
         return U2fleet;
     }
 
+    public int runSimulation(ArrayList<Rocket> rockets){
+        int totalBudget = 0;
+        int rocketNumber =0;
+        for(Rocket rocket : rockets){
+            totalBudget += rocket.RocketCost;
+            rocketNumber++;
+            while(!rocket.launch() || !rocket.land()){
+                System.out.println("<<Explode through Launch/Land>> Resend Rocket "+ rocketNumber + " again.");
+                totalBudget += rocket.RocketCost;
+            }
+        }
+        return totalBudget;
+    }
+
 
 
 }

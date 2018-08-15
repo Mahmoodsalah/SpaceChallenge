@@ -11,7 +11,6 @@ public class Rocket implements SpaceShip{
     public double ClandingCrash ;
     public double rateExplosion;
     public double rateCrash;
-    public double randomNumber;
 
 
     public Rocket(){
