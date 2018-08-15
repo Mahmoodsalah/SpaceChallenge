@@ -32,7 +32,7 @@ public class Rocket implements SpaceShip{
         return false;
     };
     public boolean canCarry(Item item){
-        return (this.RocketWeight + item.weight) <= this.Maxweight;
+        return (this.currentTotalWeight + item.weight) <= this.Maxweight;
     }
     public void carry(Item item){
         this.currentTotalWeight += item.weight;
